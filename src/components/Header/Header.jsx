@@ -1,22 +1,25 @@
 import React from 'react';
+import {useAuthDispatch, useAuthState} from "../../context/context";
+import {isLoggedIn, logout} from "../../context/actions";
 
-// import AuthService from "../../classes/AuthService";
+export function Header(props) {
 
-export class Header extends React.Component {
-  render() {
-    console.log(this.props);
-    let logoutButton = '';
-      // logoutButton = <button onClick={this.onLogoutClick.bind(this)}>Log Out</button>;
+  let logoutButton = '';
+  const authState = useAuthState();
+  const dispatch = useAuthDispatch();
 
-    return <div className="header">
+  if (isLoggedIn(authState)) {
+    logoutButton = <button onClick={onLogoutClick.bind(this)}>Log Out</button>;
+  }
+
+  return (
+    <div className="header">
       <a href="/" className="logo">PZ</a>
       {logoutButton}
     </div>
-  }
+  );
 
-  onLogoutClick() {
-    // return AuthService.logout().then(() => {
-    //   this.props.history.push('/');
-    // });
+  function onLogoutClick() {
+    return logout(dispatch);
   }
 }

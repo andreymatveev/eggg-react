@@ -4,13 +4,13 @@ import {Header} from "./components/Header/Header";
 import {NewsPage} from "./components/News/NewsPage";
 import {LoginPage} from "./components/Login/LoginPage";
 import React from "react";
-import {AuthContextProvider} from "./context/AuthContext";
+import {AuthProvider} from "./context/context";
 
 class App extends React.Component {
   render() {
     const {storeAuth} = this.props
     return <BrowserRouter>
-      <AuthContextProvider>
+      <AuthProvider>
         <Header storeAuth={storeAuth}/>
         <Switch>
           <Route exact path="/" component={() => <Redirect to="/news"/>}/>
@@ -18,7 +18,7 @@ class App extends React.Component {
           <Route exact path="/login" component={LoginPage}/>
           <Route path="*" component={() => '404'}/>
         </Switch>
-      </AuthContextProvider>
+      </AuthProvider>
     </BrowserRouter>
   }
 }

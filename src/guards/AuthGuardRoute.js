@@ -1,12 +1,13 @@
 import {Route, Redirect} from 'react-router-dom';
-import {LoginPage} from "../components/Login/LoginPage";
+import {useAuthState} from "../context/context";
+import {isLoggedIn} from "../context/actions";
 
 export const AuthGuardRoute = ({component: Component, ...rest}) => {
+  const authState = useAuthState();
   return (
     <Route {...rest} render={
       (props) => {
-        console.log('-',props);
-        if (props.storeAuth && props.storeAuth.isLoggedIn) {
+        if (isLoggedIn(authState)) {
           return <Component {...rest} />
         } else {
           return <Redirect to="/login"/>

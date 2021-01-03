@@ -1,32 +1,35 @@
 import React from 'react';
-// import AuthService from "../../classes/AuthService";
+import {login} from "../../context/actions";
+import {useAuthDispatch} from "../../context/context";
 
-export class LoginPage extends React.Component {
+function LoginPage(props) {
 
-  name = '';
-  password = '';
+  const [name, setName] = React.useState('');
+  const [password, setPassword] = React.useState('');
 
-  constructor(props) {
-    super(props);
-  }
+  const dispatch = useAuthDispatch();
 
-  render() {
-    return (
-      <form onSubmit={this.onSubmit.bind(this)}>
-        <input name="name" onChange={e => this.name = e.target.value}/>
-        <input name="password" type="password" onChange={e => this.password = e.target.value}/>
-        <button>Log in</button>
-      </form>
-    );
-  }
-
-  onSubmit(e) {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    // return AuthService.login({
-    //   name: this.name,
-    //   password: this.password,
-    // }).then(() => {
-    //   this.props.history.push('/news');
-    // });
+    let payload = {name, password};
+    try {
+      let response = await login(dispatch, payload);
+      if (!response || response.token) {
+        return;
+      }
+      props.history.push('/');
+    } catch (error) {
+      console.log('err', error);
+    }
   }
+
+  return (
+    <form onSubmit={onSubmit.bind(this)}>
+      <input name="name" onChange={e => setName(e.target.value)}/>
+      <input name="password" type="password" onChange={e => setPassword(e.target.value)}/>
+      <button>Log in</button>
+    </form>
+  );
 }
+
+export {LoginPage};
