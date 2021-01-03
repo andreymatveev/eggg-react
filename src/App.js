@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter, Route, Switch, Redirect} from "react-router-dom";
+import {AuthGuardRoute} from "./guards/AuthGuardRoute";
+import {Header} from "./components/Header/Header";
+import {NewsPage} from "./components/News/NewsPage";
+import {LoginPage} from "./components/Login/LoginPage";
+import React from "react";
+import {AuthContextProvider} from "./context/AuthContext";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  render() {
+    const {storeAuth} = this.props
+    return <BrowserRouter>
+      <AuthContextProvider>
+        <Header storeAuth={storeAuth}/>
+        <Switch>
+          <Route exact path="/" component={() => <Redirect to="/news"/>}/>
+          <AuthGuardRoute exact path="/news" component={NewsPage} storeAuth={storeAuth}/>
+          <Route exact path="/login" component={LoginPage}/>
+          <Route path="*" component={() => '404'}/>
+        </Switch>
+      </AuthContextProvider>
+    </BrowserRouter>
+  }
 }
 
-export default App;
+export default App
