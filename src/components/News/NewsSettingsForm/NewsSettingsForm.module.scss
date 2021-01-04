@@ -1,0 +1,24 @@
+@import "../../../assets/scss/variables";
+
+.form {
+  max-width: 800px;
+  margin: 0 auto 32px;
+  padding: 32px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, .05), 0 4px 10px rgba(0, 0, 0, .25);
+
+  &__error {
+    font-size: 12px;
+    line-height: 18px;
+    color: $color-error;
+    margin-bottom: 16px;
+    font-style: italic;
+  }
+
+  input {
+    width: 100%;
+  }
+
+  button {
+    min-width: 200px;
+  }
+}

@@ -1,9 +1,15 @@
 import React from 'react';
+import {NewsProvider} from "../../context/context";
+import {NewsList} from "../../components/News/NewsList/NewsList";
+import {NewsSettingsForm} from "../../components/News/NewsSettingsForm/NewsSettingsForm";
 
-export class NewsPage extends React.Component {
-  render() {
-    return <div className="content">
-      <h1>HELLO</h1>;
-    </div>
-  }
+export function NewsPage() {
+  return (
+    <NewsProvider>
+      <div className="content">
+        <NewsSettingsForm/>
+        <NewsList/>
+      </div>
+    </NewsProvider>
+  );
 }

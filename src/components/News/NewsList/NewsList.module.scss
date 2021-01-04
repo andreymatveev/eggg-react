@@ -1,0 +1,8 @@
+@import "/../../../assets/scss/variables";
+
+.list {
+  display: flex;
+  flex-direction: column;
+  margin: -32px auto 32px auto;
+  max-width: 800px;
+}
