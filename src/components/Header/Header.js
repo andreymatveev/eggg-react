@@ -1,6 +1,9 @@
 import React from 'react';
 import {useAuthDispatch, useAuthState} from "../../context/context";
 import {isLoggedIn, logout} from "../../context/actions";
+import cn from "classnames";
+
+import styles from './Header.module.scss';
 
 export function Header(props) {
 
@@ -9,12 +12,12 @@ export function Header(props) {
   const dispatch = useAuthDispatch();
 
   if (isLoggedIn(authState)) {
-    logoutButton = <button onClick={onLogoutClick.bind(this)}>Log Out</button>;
+    logoutButton = <button className="button" onClick={onLogoutClick.bind(this)}>Log Out</button>;
   }
 
   return (
-    <div className="header">
-      <a href="/" className="logo">PZ</a>
+    <div className={cn(styles.mainHeader)}>
+      <a href="/" className={cn(styles.logo)}>PZ</a>
       {logoutButton}
     </div>
   );

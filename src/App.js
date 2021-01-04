@@ -1,22 +1,27 @@
 import {BrowserRouter, Route, Switch, Redirect} from "react-router-dom";
-import {AuthGuardRoute} from "./guards/AuthGuardRoute";
+import {AppRoute} from "./routes/AppRoute";
 import {Header} from "./components/Header/Header";
-import {NewsPage} from "./components/News/NewsPage";
-import {LoginPage} from "./components/Login/LoginPage";
 import React from "react";
 import {AuthProvider} from "./context/context";
+import routes from "./routes/routes";
+
+import './assets/scss/main.scss';
 
 class App extends React.Component {
   render() {
-    const {storeAuth} = this.props
     return <BrowserRouter>
       <AuthProvider>
-        <Header storeAuth={storeAuth}/>
+        <Header/>
         <Switch>
-          <Route exact path="/" component={() => <Redirect to="/news"/>}/>
-          <AuthGuardRoute exact path="/news" component={NewsPage} storeAuth={storeAuth}/>
-          <Route exact path="/login" component={LoginPage}/>
-          <Route path="*" component={() => '404'}/>
+          {routes.map((route) => (
+            <AppRoute
+              exact
+              key={route.path}
+              path={route.path}
+              isPrivate={route.isPrivate}
+              component={route.component}
+            />
+          ))}
         </Switch>
       </AuthProvider>
     </BrowserRouter>

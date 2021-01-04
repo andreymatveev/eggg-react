@@ -1,0 +1,30 @@
+@import "../../assets/scss/variables";
+
+.mainHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 32px;
+  position: sticky;
+  top: 0;
+  background: #ffffff;
+  z-index: 1;
+  box-shadow: 0 1px 16px rgba(0, 0, 0, 0.3);
+}
+
+.logo {
+  font-size: 32px;
+  line-height: 48px;
+  font-weight: 700;
+  text-decoration: none;
+  color: #000;
+
+  &:hover {
+    color: $color-link-hover;
+  }
+
+  &:active {
+    color: $color-link-active;
+  }
+}

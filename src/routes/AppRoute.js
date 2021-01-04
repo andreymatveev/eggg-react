@@ -1,13 +1,16 @@
+import React from 'react';
 import {Route, Redirect} from 'react-router-dom';
 import {useAuthState} from "../context/context";
 import {isLoggedIn} from "../context/actions";
 
-export const AuthGuardRoute = ({component: Component, ...rest}) => {
+export const AppRoute = ({component: Component, ...rest}) => {
   const authState = useAuthState();
+  console.log(rest.isPrivate, isLoggedIn(authState));
   return (
+
     <Route {...rest} render={
-      (props) => {
-        if (isLoggedIn(authState)) {
+      () => {
+        if (!rest.isPrivate || (rest.isPrivate && isLoggedIn(authState))) {
           return <Component {...rest} />
         } else {
           return <Redirect to="/login"/>

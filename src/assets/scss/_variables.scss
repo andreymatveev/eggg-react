@@ -1,0 +1,21 @@
+$font-family: 'Open Sans', sans-serif;
+
+$color-button: #007bff;
+$color-button-hover: lighten($color-button, 10%);
+$color-button-active: darken($color-button, 10%);
+$color-button-disabled: adjust_hue($color-button, 0);
+
+$color-focus-border: darken($color-button, 20%);
+
+$border-focus: 2px solid $color-focus-border;
+
+$box-shadow-button: 0 5px 15px rgba(0, 0, 0, .05), 0 4px 10px rgba(0, 123, 255, .25);
+
+$color-link: #2099F1;
+$color-link-hover: #4DADF4;
+$color-link-active: #1D8AD9;
+
+$color-error: #FF1817;
+
+$media-mobile: 500px;
+
