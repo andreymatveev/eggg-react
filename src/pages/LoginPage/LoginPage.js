@@ -1,5 +1,5 @@
 import React from 'react';
-import {isLoggedIn, login} from "../../context/actions";
+import {login} from "../../context/actions";
 import {useAuthDispatch, useAuthState} from "../../context/context";
 
 import styles from "./LoginPage.module.scss";
@@ -9,13 +9,14 @@ function LoginPage(props) {
   const [name, setName] = React.useState('');
   const [password, setPassword] = React.useState('');
 
-  const dispatch = useAuthDispatch();
+  const authState = useAuthState();
+  const authDispatch = useAuthDispatch();
 
   const onSubmit = async (e) => {
     e.preventDefault();
     let payload = {name, password};
     try {
-      let response = await login(dispatch, payload);
+      let response = await login(authDispatch, payload);
       if (!response || response.token) {
         return;
       }
@@ -35,7 +36,7 @@ function LoginPage(props) {
           <input name="password" type="password" onChange={e => setPassword(e.target.value)}/>
         </div>
         <div className="form__controls">
-          <button className="form__control button" type="submit">Log in</button>
+          <button className="form__control button" type="submit" disabled={authState.loading}>Log in</button>
         </div>
       </form>
     </div>

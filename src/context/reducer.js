@@ -82,6 +82,7 @@ export const PostPhotoReducer = (initialState, action) => {
       return {
         ...initialState,
         result: action.payload,
+        loaded: true,
         loading: false,
       };
     case 'POST_PHOTO_ERROR':

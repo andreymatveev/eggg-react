@@ -3,7 +3,7 @@ $font-family: 'Open Sans', sans-serif;
 $color-button: #007bff;
 $color-button-hover: lighten($color-button, 10%);
 $color-button-active: darken($color-button, 10%);
-$color-button-disabled: adjust_hue($color-button, 0);
+$color-button-disabled: #d6d6d6;
 
 $color-focus-border: darken($color-button, 20%);
 

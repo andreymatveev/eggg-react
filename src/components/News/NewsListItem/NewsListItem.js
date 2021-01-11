@@ -9,7 +9,7 @@ export function NewsListItem(props) {
   const [postPhotoState, dispatch] = useReducer(PostPhotoReducer, postPhotoInitialState);
 
   return (
-    <div className={cn(styles.item)}>
+    <div className={cn(styles.item) + ' ' + (postPhotoState.loading ? styles['item_state-loading'] : '') + ' ' + (postPhotoState.loaded ? styles['item_state-loaded'] : '')}>
       <div className={styles.item__image}>
         <img src={props.item.urlToImage} alt=""/>
       </div>
@@ -24,6 +24,7 @@ export function NewsListItem(props) {
         <button
           className="button"
           onClick={(e) => onPublishClick(e, dispatch, props.item)}
+          disabled={postPhotoState.loading || postPhotoState.loaded}
         >Опубликовать
         </button>
       </div>
