@@ -8,9 +8,9 @@ export const AppRoute = ({component: Component, ...rest}) => {
   return (
 
     <Route {...rest} render={
-      () => {
+      (props) => {
         if (!rest.isPrivate || (rest.isPrivate && isLoggedIn(authState))) {
-          return <Component {...rest} />
+          return <Component {...rest} {...props} />
         } else {
           return <Redirect to="/login"/>
         }

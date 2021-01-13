@@ -7,7 +7,7 @@ import styles from './NewsSettingsForm.module.scss';
 export function NewsSettingsForm() {
   const newsContext = useNewsContext();
 
-  const [search, setSearch] = useState('(россии OR российским OR рф OR россия OR российские OR россиянам) AND (нельзя OR запретили OR запретят OR запрещено OR запрет)');
+  const [search, setSearch] = useState('(россии OR российским OR рф OR россия OR российские OR россиянам OR правительство OR депутаты OR парламент) AND (нельзя OR запретили OR запретят OR запрещено OR запрет)');
   const [from, setFrom] = useState(getDefaultFrom());
 
   return (

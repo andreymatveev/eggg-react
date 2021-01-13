@@ -64,21 +64,18 @@ export async function getNewsList(dispatch, params) {
 export async function postPhoto(dispatch, params) {
   dispatch({type: 'REQUEST_POST_PHOTO'});
 
-  return Promise.resolve().then(() => {
-    dispatch({type: 'POST_PHOTO_SUCCESS', payload: true});
-  });
-  // return axios
-  //   .post(PZ_ENDPOINTS.photo(), params, {
-  //     headers: {...getAuthHeader()},
-  //   })
-  //   .then((response) => {
-  //     dispatch({type: 'POST_PHOTO_SUCCESS', payload: true});
-  //     return null;
-  //   })
-  //   .catch(() => {
-  //     dispatch({type: 'POST_PHOTO_ERROR'});
-  //     return null;
-  //   });
+  return axios
+    .post(PZ_ENDPOINTS.photo(), params, {
+      headers: {...getAuthHeader()},
+    })
+    .then((response) => {
+      dispatch({type: 'POST_PHOTO_SUCCESS', payload: true});
+      return null;
+    })
+    .catch(() => {
+      dispatch({type: 'POST_PHOTO_ERROR'});
+      return null;
+    });
 }
 
 function getAuthHeader() {
