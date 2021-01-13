@@ -6,8 +6,6 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-COPY build ./build
-
 FROM nginx:1.15.2
 COPY config/nginx/default.conf etc/nginx/nginx.conf
 

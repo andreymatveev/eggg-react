@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-docker rm eggg-client --force
-docker rmi eggg-client --force
-docker build -t eggg-client .
-docker run --rm -d --name eggg-client -p 80:80 eggg-client
+docker rm eggg-react --force
+docker rmi eggg-react --force
+docker build -t eggg-react .
+docker run --rm -d --name eggg-react -p 80:80 eggg-react
