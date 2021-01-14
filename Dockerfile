@@ -1,8 +1,14 @@
 FROM node:12 as builder
 
 WORKDIR /usr/src/eggg
-COPY package*.json ./
+COPY package.json ./
+
+RUN mkdir -p node_modules/node-sass/vendor/linux-x64-51
+RUN curl -L https://github.com/sass/node-sass/releases/download/v4.9.4/linux-x64-51_binding.node -o node_modules/node-sass/vendor/linux-x64-51/binding.node
+
 RUN npm install
+RUN npm rebuild node-sass
+
 COPY . .
 RUN npm run build
 
