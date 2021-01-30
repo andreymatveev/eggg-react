@@ -51,21 +51,35 @@
     justify-content: space-between;
     margin-top: 16px;
 
+    .form__control + .form__control {
+      margin-left: 16px;
+    }
+
     @media (max-width: $media-mobile) {
       flex-direction: column;
       justify-content: flex-start;
 
+      .form__control-spacer + .form__control {
+        margin-top: 16px;
+      }
+
       .form__control + .form__control {
+        margin-top: 16px;
+        margin-left: 0;
+      }
+
+      .form__control-spacer {
+        display: none;
         margin-top: 16px;
       }
     }
   }
 
-  input, textarea {
-    width: 100%;
+  &__control-spacer {
+    flex: 1 0;
   }
 
-  .form__control {
-    min-width: 200px;
+  input, textarea {
+    width: 100%;
   }
 }

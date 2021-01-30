@@ -6,6 +6,10 @@
   padding: 32px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, .05), 0 4px 10px rgba(0, 0, 0, .25);
 
+  @media (max-width: $media-tablet) {
+    padding: 24px;
+  }
+
   &__error {
     font-size: 12px;
     line-height: 18px;
@@ -19,6 +23,10 @@
   }
 
   button {
-    min-width: 200px;
+    min-width: 100px;
+
+    &:first-of-type {
+      min-width: 150px;
+    }
   }
 }

@@ -4,11 +4,18 @@ import {getNewsList} from "../../../context/actions";
 
 import styles from './NewsSettingsForm.module.scss';
 
+const defaultSearch = '(россии OR российским OR рф OR россия OR российские OR россиянам OR правительство OR депутаты OR парламент) AND (нельзя OR запретили OR запретят OR запрещено OR запрет OR ограничен OR ограничили)';
+
 export function NewsSettingsForm() {
   const newsContext = useNewsContext();
 
-  const [search, setSearch] = useState('(россии OR российским OR рф OR россия OR российские OR россиянам OR правительство OR депутаты OR парламент) AND (нельзя OR запретили OR запретят OR запрещено OR запрет)');
+  const [search, setSearch] = useState(defaultSearch);
   const [from, setFrom] = useState(getDefaultFrom());
+
+  function SetDefaultForm() {
+    setFrom(getDefaultFrom());
+    setSearch(defaultSearch);
+  }
 
   return (
     <form className={'form ' + styles.form}>
@@ -28,10 +35,18 @@ export function NewsSettingsForm() {
           onClick={(e) => onLoadNewsClick(e, newsContext)}
         >Load news
         </button>
+        <div className="form__control-spacer"></div>
         <button
           className="form__control button button_color-lined"
-          type="reset"
-        >Reset
+          type="button"
+          onClick={(e) => onClearClick(e)}
+        >Clear
+        </button>
+        <button
+          className="form__control button button_color-lined"
+          type="button"
+          onClick={(e) => onDefaultClick(e)}
+        >Default
         </button>
       </div>
     </form>
@@ -48,5 +63,15 @@ export function NewsSettingsForm() {
       search,
       from,
     });
+  }
+
+  function onClearClick(e) {
+    e.preventDefault();
+    setSearch('');
+  }
+
+  function onDefaultClick(e) {
+    e.preventDefault();
+    SetDefaultForm();
   }
 }
